@@ -50,7 +50,7 @@ export function CocoFeatures() {
             <Cpu className="h-3 w-3" />
             Engine capabilities
           </span>
-          <h2 className="coco-display mt-5 text-[2rem] sm:text-[2.6rem] lg:text-[3rem]">
+          <h2 className="coco-display coco-title-gradient mt-5 text-[2rem] sm:text-[2.6rem] lg:text-[3rem]">
             A full trading desk,
             <br />
             compressed into one engine.
@@ -74,6 +74,25 @@ export function CocoFeatures() {
               <h3 className="coco-sub mt-5 text-[19px]">{f.title}</h3>
               <p className="coco-muted mt-2 text-sm leading-relaxed">{f.desc}</p>
             </article>
+          ))}
+        </div>
+
+        {/* Gradient stat band */}
+        <div
+          className="coco-pastel mt-6 grid gap-8 rounded-[32px] p-8 sm:grid-cols-3 sm:p-10"
+          data-testid="stat-band"
+        >
+          {[
+            { k: 'signal accuracy', v: '96.4%' },
+            { k: 'pairs monitored', v: '42' },
+            { k: 'engine uptime', v: '24 / 7' },
+          ].map((s) => (
+            <div key={s.k}>
+              <p className="coco-mono text-[10px] uppercase text-[var(--dim)]">{s.k}</p>
+              <p className="coco-display mt-2 bg-[linear-gradient(140deg,#0036ff,#6d3bff)] bg-clip-text text-[2.4rem] text-transparent">
+                {s.v}
+              </p>
+            </div>
           ))}
         </div>
       </div>

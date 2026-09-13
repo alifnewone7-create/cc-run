@@ -36,12 +36,12 @@ export function CocoHero() {
           </span>
 
           <h1
-            className="coco-display coco-rise mt-6 max-w-[16ch] text-balance text-[2.6rem] text-white sm:text-[3.4rem] lg:text-[4.1rem]"
+            className="coco-display coco-title-gradient coco-rise mt-6 max-w-[16ch] text-balance text-[2.6rem] sm:text-[3.4rem] lg:text-[4.1rem]"
             style={{ '--d': '110ms' } as React.CSSProperties}
             data-testid="hero-heading"
           >
             The market never sleeps. Neither does{' '}
-            <span className="coco-accent">Coco AI</span>.
+            <span className="coco-accent-gradient">Coco AI</span>.
           </h1>
 
           <p

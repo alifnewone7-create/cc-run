@@ -1,5 +1,11 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono, Inter, Inter_Tight, Playfair_Display } from 'next/font/google'
+import {
+  Geist,
+  Geist_Mono,
+  JetBrains_Mono,
+  Playfair_Display,
+  Schibsted_Grotesk,
+} from 'next/font/google'
 import { AuthProvider } from '@/components/auth-provider'
 import { UpgradeGateProvider } from '@/components/upgrade-gate'
 import './globals.css'
@@ -14,15 +20,20 @@ const playfair = Playfair_Display({
   variable: '--font-playfair',
   subsets: ['latin'],
 })
-const interTight = Inter_Tight({
+const schibsted = Schibsted_Grotesk({
   variable: '--font-display',
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['400', '500', '600', '700'],
 })
-const interBody = Inter({
+const schibstedBody = Schibsted_Grotesk({
   variable: '--font-body',
   subsets: ['latin'],
   weight: ['400', '500', '600'],
+})
+const techMono = JetBrains_Mono({
+  variable: '--font-tech',
+  subsets: ['latin'],
+  weight: ['400', '500'],
 })
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://coco.ai'
@@ -66,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${interTight.variable} ${interBody.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${schibsted.variable} ${schibstedBody.variable} ${techMono.variable}`}
     >
       <body className="bg-background font-sans antialiased">
         <AuthProvider>

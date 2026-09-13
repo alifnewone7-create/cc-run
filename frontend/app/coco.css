@@ -27,9 +27,19 @@
   position: relative;
   isolation: isolate;
   background:
-    radial-gradient(80rem 40rem at 50% -18%, rgba(0, 147, 255, 0.28), transparent 62%),
-    radial-gradient(50rem 32rem at 88% 6%, rgba(0, 54, 255, 0.32), transparent 60%),
-    linear-gradient(180deg, #0a0a2e 0%, #0b0824 46%, var(--cosmic) 100%);
+    radial-gradient(70rem 34rem at 50% -14%, rgba(214, 233, 255, 0.42), transparent 58%),
+    radial-gradient(60rem 30rem at 50% -4%, rgba(16, 149, 229, 0.45), transparent 62%),
+    radial-gradient(46rem 30rem at 12% 18%, rgba(43, 34, 88, 0.85), transparent 66%),
+    radial-gradient(52rem 34rem at 92% 8%, rgba(16, 70, 233, 0.55), transparent 64%),
+    linear-gradient(
+      180deg,
+      #0b1c5e 0%,
+      #0c1f7a 16%,
+      #1046e9 34%,
+      #14226f 58%,
+      #0e0c33 80%,
+      var(--cosmic) 100%
+    );
   color: #fff;
 }
 
@@ -58,8 +68,75 @@
 }
 
 .coco-light {
-  background: #fff;
+  background:    radial-gradient(60rem 26rem at 50% 0%, rgba(209, 233, 255, 0.55), transparent 62%),
+    linear-gradient(180deg, #ffffff 0%, #fbfcfe 48%, #f7f7f8 100%);
   color: var(--ink);
+}
+
+/* Calmer dark grading for blocks (cards, footer) */
+.coco-shade {
+  background:
+    radial-gradient(40rem 20rem at 8% -10%, rgba(16, 70, 233, 0.55), transparent 62%),
+    radial-gradient(34rem 18rem at 95% 10%, rgba(109, 59, 255, 0.32), transparent 66%),
+    linear-gradient(168deg, #111a55 0%, #0d1036 46%, #0a0620 78%, #06040f 100%);
+  color: #fff;
+}
+
+/* Gradient headline chrome (dark + light zones) */
+.coco-title-gradient {
+  background-image: linear-gradient(
+    176deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.92) 42%,
+    rgba(255, 255, 255, 0.64) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.coco-light .coco-title-gradient {
+  background-image: linear-gradient(176deg, #141414 0%, #24242c 48%, #55555f 100%);
+}
+
+.coco-accent-gradient {
+  background-image: linear-gradient(100deg, #6fc0ff 0%, #2f7bff 48%, #a78bff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Pastel gradient surface, ToDesktop CTA grading */
+.coco-pastel {
+  background-image: linear-gradient(
+    114.58deg,
+    #d1e9ff -1.34%,
+    rgba(255, 222, 253, 0.56) 24.05%,
+    rgba(247, 247, 247, 1) 74.82%
+  );
+  outline: 1px solid rgba(55, 55, 55, 0.04);
+  outline-offset: -1px;
+}
+
+/* Ghost surface for light-zone blocks */
+.coco-ghost {
+  background: rgba(55, 55, 55, 0.045);
+  border: 1px solid rgba(55, 55, 55, 0.06);
+}
+
+/* Gradient hairline rules */
+.coco-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.22) 22%,
+    rgba(255, 255, 255, 0.22) 78%,
+    transparent
+  );
+}
+.coco-light .coco-rule {
+  background: linear-gradient(90deg, transparent, var(--hairline) 20%, var(--hairline) 80%, transparent);
 }
 
 .coco-ink {
@@ -93,25 +170,28 @@
   gap: 8px;
   padding: 5px 12px;
   border-radius: 999px;
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-tech), ui-monospace, monospace;
   font-size: 10px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.09em;
   border: 1px solid var(--hairline);
-  background: var(--mist);
+  background-image: linear-gradient(180deg, rgba(55, 55, 55, 0.05), rgba(55, 55, 55, 0.02));
   color: var(--ink);
 }
 
 .coco-dark .coco-eyebrow {
-  border-color: rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.86);
+  border-color: rgba(255, 255, 255, 0.14);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+  color: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(14px);
+  box-shadow:
+    rgba(255, 255, 255, 0.14) 0 1px 0 0 inset,
+    rgba(2, 9, 44, 0.35) 0 4px 16px 0;
 }
 
 .coco-mono {
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-tech), ui-monospace, monospace;
   letter-spacing: 0.03em;
 }
 
@@ -141,17 +221,17 @@
 }
 
 .coco-btn-primary {
-  background: var(--iris);
+  background-image: linear-gradient(180deg, #3f6bff 0%, #0f3fff 52%, #0030e8 100%);
   color: #fff;
-  border: 1px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow:
-    rgba(255, 255, 255, 0.14) 0 1px 2px -0.5px inset,
-    rgba(255, 255, 255, 0.18) 0 0.5px 0.5px 0 inset,
-    rgba(255, 255, 255, 0.16) 0 8px 24px -4px inset,
-    rgba(0, 54, 255, 0.35) 0 10px 26px -12px;
+    rgba(255, 255, 255, 0.22) 0 1px 2px -0.5px inset,
+    rgba(255, 255, 255, 0.28) 0 0.5px 0.5px 0 inset,
+    rgba(255, 255, 255, 0.18) 0 8px 24px -4px inset,
+    rgba(0, 54, 255, 0.42) 0 12px 28px -12px;
 }
 .coco-btn-primary:hover {
-  background: var(--iris-soft);
+  background-image: linear-gradient(180deg, #5479ff 0%, #1b4bff 52%, #0036ff 100%);
   transform: translateY(-1px);
 }
 .coco-btn-primary:hover svg:last-child {
@@ -183,12 +263,13 @@
 
 /* Pill nav */
 .coco-nav {
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(10, 9, 32, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(10, 9, 32, 0.55)),
+    linear-gradient(180deg, rgba(10, 9, 32, 0.7), rgba(10, 9, 32, 0.7));
   backdrop-filter: blur(18px) saturate(160%);
   box-shadow:
-    rgba(255, 255, 255, 0.06) 0 1px 3px 0 inset,
-    rgba(2, 9, 44, 0.4) 0 16px 56px 0;
+    rgba(255, 255, 255, 0.1) 0 1px 3px 0 inset,
+    rgba(2, 9, 44, 0.45) 0 16px 56px 0;
 }
 
 .coco-navlink {
@@ -218,18 +299,20 @@
 /* Cards */
 .coco-card {
   border: 1px solid var(--hairline);
-  border-radius: 14px;
-  background: #fff;
+  border-radius: 20px;
+  background-image: linear-gradient(180deg, #ffffff 0%, #fafbfd 100%);
   transition:
     transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    background-image 0.3s ease;
 }
 .coco-card:hover {
   transform: translateY(-4px);
   border-color: #c9d6ff;
+  background-image: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
   box-shadow:
-    rgba(0, 54, 255, 0.08) 0 12px 24px -10px,
+    rgba(0, 54, 255, 0.1) 0 14px 28px -12px,
     rgba(0, 0, 0, 0.04) 0 0 0 1px;
 }
 
@@ -240,14 +323,15 @@
   height: 44px;
   width: 44px;
   border-radius: 12px;
-  background: var(--frost);
+  background-image: linear-gradient(160deg, #e8f1ff 0%, #dbe6ff 55%, #f1e9ff 100%);
   border: 1px solid #cfe0ff;
   color: var(--iris);
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
+  box-shadow: rgba(255, 255, 255, 0.9) 0 1px 0 0 inset;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease;
 }
 .coco-card:hover .coco-icon {
   transform: translateY(-2px) rotate(-4deg);
-  background: #d3e3ff;
+  filter: saturate(1.25);
 }
 
 .coco-dark .coco-card {
@@ -274,7 +358,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .coco-window-body {
-  background: var(--void);
+  background-image: linear-gradient(180deg, #070824 0%, var(--void) 60%, #04040f 100%);
   padding: 18px 16px;
 }
 .coco-dot {
@@ -319,8 +403,9 @@
   color: var(--ink);
 }
 .coco-tab[data-active='true'] {
-  background: var(--iris);
+  background-image: linear-gradient(180deg, #3f6bff 0%, #0f3fff 52%, #0030e8 100%);
   color: #fff;
+  box-shadow: rgba(255, 255, 255, 0.22) 0 1px 0 0 inset;
 }
 
 /* Motion */

@@ -43,7 +43,7 @@ export function CocoPricing() {
             <Layers className="h-3 w-3" />
             Access paths
           </span>
-          <h2 className="coco-display mt-5 text-[2rem] sm:text-[2.6rem] lg:text-[3rem]">
+          <h2 className="coco-display coco-title-gradient mt-5 text-[2rem] sm:text-[2.6rem] lg:text-[3rem]">
             Two ways in.
             <br />
             Same engine.
@@ -113,7 +113,7 @@ export function CocoPricing() {
 
           {/* License */}
           <div
-            className="coco-dark relative overflow-hidden rounded-[20px] p-6 sm:p-8"
+            className="coco-dark coco-shade relative overflow-hidden rounded-[20px] p-6 sm:p-8"
             data-testid="pricing-license"
           >
             <div className="relative z-10 flex items-center justify-between gap-4">

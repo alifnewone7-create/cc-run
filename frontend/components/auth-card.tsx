@@ -111,7 +111,7 @@ export function AuthCard({ mode }: { mode: AuthMode }) {
           <Radar className="h-3 w-3" />
           {isLogin ? 'Engine access' : 'New operator'}
         </span>
-        <h1 className="coco-display mt-4 text-[1.9rem] sm:text-[2.1rem]" data-testid="auth-heading">
+        <h1 className="coco-display coco-title-gradient mt-4 text-[1.9rem] sm:text-[2.1rem]" data-testid="auth-heading">
           {isLogin ? 'Welcome back.' : 'Create your account.'}
         </h1>
         <p className="coco-muted mt-2 text-sm leading-relaxed">
@@ -254,7 +254,7 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
             <Radar className="coco-orbit h-3 w-3" />
             Trading intelligence
           </span>
-          <h2 className="coco-display mt-6 text-[2.6rem] text-white xl:text-[3.1rem]">
+          <h2 className="coco-display coco-title-gradient mt-6 text-[2.6rem] xl:text-[3.1rem]">
             The market never sleeps. Neither does Coco AI.
           </h2>
           <ul className="mt-9 flex flex-col gap-4">

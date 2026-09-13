@@ -4,11 +4,11 @@ import { ArrowRight, TriangleAlert, Send, ScrollText } from 'lucide-react'
 
 export function CocoFooter() {
   return (
-    <footer id="support" className="coco-dark scroll-mt-24">
+    <footer id="support" className="coco-dark coco-shade scroll-mt-24">
       <div className="mx-auto max-w-[1200px] px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="flex flex-col items-start gap-8 border-b border-white/10 pb-14 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-xl">
-            <h2 className="coco-display text-[1.9rem] text-white sm:text-[2.4rem]">
+            <h2 className="coco-display coco-title-gradient text-[1.9rem] sm:text-[2.4rem]">
               Put the engine to work today.
             </h2>
             <p className="mt-3 text-sm text-white/60 sm:text-base">
