@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 const CELLS = [
   { key: 'feed', label: 'Market feed' },
   { key: 'core', label: 'Coco AI core' },
@@ -117,13 +115,27 @@ function Glyph({ kind }: { kind: (typeof CELLS)[number]['key'] }) {
       <div className="relative grid h-full w-full place-items-center">
         <span className="coco-core-ring" aria-hidden="true" />
         <span className="coco-core-glow" aria-hidden="true" />
-        <Image
-          src="/coco-ai.jpg"
-          alt="Coco AI"
-          width={46}
-          height={46}
-          className="relative z-10 h-[46px] w-[46px] rounded-xl object-cover ring-1 ring-white/25"
-        />
+        <svg viewBox="0 0 48 48" className="coco-glyph coco-glyph-core" aria-hidden="true">
+          <rect
+            x="12"
+            y="12"
+            width="24"
+            height="24"
+            rx="5"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            fill="none"
+          />
+          <path
+            d="M24 17 L29.5 24 L24 31 L18.5 24 Z"
+            fill="currentColor"
+            className="coco-core-diamond"
+          />
+          <g stroke="currentColor" strokeOpacity="0.55" strokeWidth="1.4" strokeLinecap="round">
+            <path d="M18 12 V7 M24 12 V6 M30 12 V7 M18 36 V41 M24 36 V42 M30 36 V41" />
+            <path d="M12 18 H7 M12 24 H6 M12 30 H7 M36 18 H41 M36 24 H42 M36 30 H41" />
+          </g>
+        </svg>
       </div>
     )
   }

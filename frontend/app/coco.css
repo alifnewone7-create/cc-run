@@ -424,11 +424,10 @@
 /* ── Engine system map (chip grid) ──────────────────────────────────── */
 
 .coco-engine-panel {
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   background:
-    radial-gradient(70% 60% at 50% -10%, rgba(90, 130, 255, 0.2), transparent 62%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
-  backdrop-filter: blur(18px);
+    radial-gradient(75% 60% at 50% -8%, rgba(64, 104, 220, 0.35), transparent 62%),
+    linear-gradient(180deg, #131a4d 0%, #0d1234 52%, #090b26 100%);
   box-shadow:
     rgba(255, 255, 255, 0.08) 0 1px 0 0 inset,
     rgba(4, 8, 40, 0.5) 0 28px 70px -20px;
@@ -459,12 +458,12 @@
   position: relative;
   display: grid;
   place-items: center;
-  height: 92px;
+  height: 66px;
   width: 100%;
-  max-width: 142px;
-  border-radius: 14px;
+  max-width: 92px;
+  border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.16);
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(160deg, #1b2358 0%, #131a46 55%, #0d1233 100%);
   box-shadow:
     rgba(255, 255, 255, 0.1) 0 1px 0 0 inset,
     rgba(4, 8, 40, 0.45) 0 14px 30px -14px;
@@ -480,22 +479,22 @@
 
 @media (min-width: 768px) {
   .coco-chip {
-    height: 104px;
-    max-width: 154px;
+    height: 76px;
+    max-width: 104px;
   }
   .coco-chip-core {
-    height: 120px;
-    max-width: 172px;
+    height: 84px;
+    max-width: 112px;
   }
 }
 
 .coco-chip-core {
-  height: 104px;
-  max-width: 158px;
-  border-color: rgba(180, 203, 255, 0.55);
+  height: 74px;
+  max-width: 100px;
+  border-color: rgba(180, 203, 255, 0.6);
   background:
-    radial-gradient(85% 80% at 50% 0%, rgba(120, 156, 255, 0.34), transparent 68%),
-    linear-gradient(165deg, #18205f 0%, #0c1139 60%, #070a24 100%);
+    radial-gradient(85% 80% at 50% 0%, rgba(120, 156, 255, 0.4), transparent 70%),
+    linear-gradient(165deg, #23306f 0%, #131a52 58%, #0b1030 100%);
   box-shadow:
     rgba(255, 255, 255, 0.14) 0 1px 0 0 inset,
     rgba(60, 100, 255, 0.4) 0 0 58px -10px;
@@ -507,13 +506,13 @@
   top: 50%;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 6px;
   transform: translateY(-50%);
 }
 .coco-pins i {
   display: block;
   height: 2px;
-  width: 6px;
+  width: 5px;
   border-radius: 1px;
   background: rgba(255, 255, 255, 0.28);
 }
@@ -526,10 +525,10 @@
 
 .coco-notch {
   position: absolute;
-  top: 7px;
-  left: 7px;
-  height: 8px;
-  width: 8px;
+  top: 6px;
+  left: 6px;
+  height: 7px;
+  width: 7px;
   border-top: 1px solid rgba(255, 255, 255, 0.35);
   border-left: 1px solid rgba(255, 255, 255, 0.35);
   border-top-left-radius: 3px;
@@ -537,13 +536,13 @@
 
 /* label pill */
 .coco-tag {
-  margin-top: 14px;
-  border-radius: 8px;
+  margin-top: 10px;
+  border-radius: 7px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
-  padding: 4px 10px;
+  background: #131a44;
+  padding: 3px 8px;
   font-family: var(--font-tech), ui-monospace, monospace;
-  font-size: 9.5px;
+  font-size: 9px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.7);
@@ -552,9 +551,14 @@
 }
 
 .coco-glyph {
-  height: 58px;
-  width: 80px;
-  filter: drop-shadow(0 0 10px rgba(143, 178, 255, 0.35));
+  height: 38px;
+  width: 54px;
+  filter: drop-shadow(0 0 8px rgba(143, 178, 255, 0.3));
+}
+
+.coco-glyph-core {
+  height: 40px;
+  width: 40px;
 }
 
 /* Wires */
@@ -693,6 +697,12 @@
   animation: coco-dash 2.4s linear infinite;
 }
 
+.coco-core-diamond {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: coco-pulse 2.6s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .coco-dash,
   .coco-orbit-dash,
@@ -703,6 +713,7 @@
   .coco-seg-dot,
   .coco-seg-bar,
   .coco-ledger-bar,
+  .coco-core-diamond,
   .coco-cell {
     animation: none !important;
     opacity: 1 !important;
