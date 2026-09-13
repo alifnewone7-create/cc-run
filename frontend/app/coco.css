@@ -423,30 +423,6 @@
 
 /* ── Engine system map (chip grid) ──────────────────────────────────── */
 
-.coco-engine-panel {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background:
-    radial-gradient(75% 60% at 50% -8%, rgba(64, 104, 220, 0.35), transparent 62%),
-    linear-gradient(180deg, #131a4d 0%, #0d1234 52%, #090b26 100%);
-  box-shadow:
-    rgba(255, 255, 255, 0.08) 0 1px 0 0 inset,
-    rgba(4, 8, 40, 0.5) 0 28px 70px -20px;
-}
-
-/* faint circuit texture */
-.coco-pcb {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.5;
-  background-image:
-    radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 26px 26px, 52px 52px;
-  mask-image: radial-gradient(120% 100% at 50% 50%, #000 25%, transparent 75%);
-  -webkit-mask-image: radial-gradient(120% 100% at 50% 50%, #000 25%, transparent 75%);
-}
-
 .coco-cell {
   opacity: 0;
   animation: coco-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -562,36 +538,6 @@
 }
 
 /* Wires */
-.coco-vline {
-  position: absolute;
-  left: 50%;
-  top: 6px;
-  bottom: 6px;
-  width: 2px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
-  transform: translateX(-50%);
-}
-.coco-vline::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 22%;
-  border-radius: 999px;
-  background: linear-gradient(180deg, transparent, #e8f0ff, transparent);
-  animation: coco-vline 2.6s linear infinite;
-}
-@keyframes coco-vline {
-  from {
-    top: -26%;
-  }
-  to {
-    top: 104%;
-  }
-}
-
 .coco-dash {
   animation: coco-dash 2.6s linear infinite;
 }

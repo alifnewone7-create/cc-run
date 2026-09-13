@@ -18,91 +18,120 @@ const LINKS = [
   'M 50 41 C 50 52 50 58 50 62',
 ]
 
+const MOBILE_LINKS = [
+  'M 30 15 H 70',
+  'M 78 24 C 84 32 84 40 78 48',
+  'M 70 50 H 30',
+  'M 22 59 C 16 67 16 75 22 83',
+  'M 30 85 H 70',
+]
+
 export function CocoEngine() {
   return (
-    <div className="coco-engine relative mx-auto w-full max-w-[940px]" data-testid="engine-diagram">
-      <div className="coco-engine-panel relative overflow-hidden rounded-[28px] px-4 py-6 sm:px-8 sm:py-9">
-        <span className="coco-pcb" aria-hidden="true" />
+    <div className="coco-engine relative mx-auto w-full max-w-[760px]" data-testid="engine-diagram">
+      <div className="mb-7 flex items-center justify-center gap-2">
+        <span className="coco-pulse h-1.5 w-1.5 rounded-full bg-[#4ade80]" />
+        <span className="coco-mono text-[10px] uppercase tracking-[0.16em] text-white/45">
+          coco-engine · system map · syncing
+        </span>
+      </div>
 
-        <div className="relative z-10 mb-6 flex items-center justify-between">
-          <span className="coco-mono text-[10px] uppercase tracking-[0.14em] text-white/45">
-            coco-engine · system map
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="coco-pulse h-1.5 w-1.5 rounded-full bg-[#4ade80]" />
-            <span className="coco-mono text-[10px] uppercase tracking-[0.14em] text-white/45">
-              syncing
-            </span>
-          </span>
-        </div>
+      <div className="relative">
+        <svg
+          className="pointer-events-none absolute inset-0 hidden h-full w-full md:block"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="cocoWire" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#8fb2ff" stopOpacity="0" />
+              <stop offset="50%" stopColor="#e8f0ff" stopOpacity="1" />
+              <stop offset="100%" stopColor="#8fb2ff" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          {LINKS.map((d, i) => (
+            <g key={d}>
+              <path
+                d={d}
+                pathLength={100}
+                fill="none"
+                stroke="rgba(255,255,255,0.2)"
+                strokeWidth="1"
+                vectorEffect="non-scaling-stroke"
+              />
+              <path
+                className="coco-dash"
+                d={d}
+                pathLength={100}
+                fill="none"
+                stroke="url(#cocoWire)"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeDasharray="18 82"
+                vectorEffect="non-scaling-stroke"
+                style={{ animationDelay: `${i * 380}ms` }}
+              />
+            </g>
+          ))}
+        </svg>
 
-        <div className="relative">
-          <svg
-            className="pointer-events-none absolute inset-0 hidden h-full w-full md:block"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <defs>
-              <linearGradient id="cocoWire" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#8fb2ff" stopOpacity="0" />
-                <stop offset="50%" stopColor="#e8f0ff" stopOpacity="1" />
-                <stop offset="100%" stopColor="#8fb2ff" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-            {LINKS.map((d, i) => (
-              <g key={d}>
-                <path
-                  d={d}
-                  pathLength={100}
-                  fill="none"
-                  stroke="rgba(255,255,255,0.18)"
-                  strokeWidth="1"
-                  vectorEffect="non-scaling-stroke"
-                />
-                <path
-                  className="coco-dash"
-                  d={d}
-                  pathLength={100}
-                  fill="none"
-                  stroke="url(#cocoWire)"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                  strokeDasharray="18 82"
-                  vectorEffect="non-scaling-stroke"
-                  style={{ animationDelay: `${i * 420}ms` }}
-                />
-              </g>
-            ))}
-          </svg>
+        <svg
+          className="pointer-events-none absolute inset-0 h-full w-full md:hidden"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          {MOBILE_LINKS.map((d, i) => (
+            <g key={d}>
+              <path
+                d={d}
+                pathLength={100}
+                fill="none"
+                stroke="rgba(255,255,255,0.2)"
+                strokeWidth="1"
+                vectorEffect="non-scaling-stroke"
+              />
+              <path
+                className="coco-dash"
+                d={d}
+                pathLength={100}
+                fill="none"
+                stroke="url(#cocoWire)"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeDasharray="20 80"
+                vectorEffect="non-scaling-stroke"
+                style={{ animationDelay: `${i * 420}ms` }}
+              />
+            </g>
+          ))}
+        </svg>
 
-          <span className="coco-vline md:hidden" aria-hidden="true" />
-
-          <div className="relative grid grid-cols-2 gap-x-5 gap-y-7 sm:gap-x-10 md:grid-cols-3 md:gap-x-14 md:gap-y-12">
-            {CELLS.map((cell, i) => (
-              <figure
-                key={cell.key}
-                className="coco-cell flex flex-col items-center"
-                style={{ '--d': `${i * 120}ms` } as React.CSSProperties}
-              >
-                <div className={`coco-chip ${cell.key === 'core' ? 'coco-chip-core' : ''}`}>
-                  <span className="coco-pins coco-pins-l" aria-hidden="true">
-                    <i />
-                    <i />
-                    <i />
-                  </span>
-                  <span className="coco-pins coco-pins-r" aria-hidden="true">
-                    <i />
-                    <i />
-                    <i />
-                  </span>
-                  <span className="coco-notch" aria-hidden="true" />
-                  <Glyph kind={cell.key} />
-                </div>
-                <figcaption className="coco-tag">{cell.label}</figcaption>
-              </figure>
-            ))}
-          </div>
+        <div className="relative grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-12 md:grid-cols-3 md:gap-x-16 md:gap-y-14">
+          {CELLS.map((cell, i) => (
+            <figure
+              key={cell.key}
+              className="coco-cell flex flex-col items-center"
+              style={{ '--d': `${i * 120}ms` } as React.CSSProperties}
+            >
+              <div className={`coco-chip ${cell.key === 'core' ? 'coco-chip-core' : ''}`}>
+                <span className="coco-pins coco-pins-l" aria-hidden="true">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span className="coco-pins coco-pins-r" aria-hidden="true">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span className="coco-notch" aria-hidden="true" />
+                <Glyph kind={cell.key} />
+              </div>
+              <figcaption className="coco-tag">{cell.label}</figcaption>
+            </figure>
+          ))}
         </div>
       </div>
     </div>
