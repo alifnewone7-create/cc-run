@@ -41,31 +41,33 @@ const FEATURES = [
   },
 ]
 
+const STAT_BAND = [
+  { k: 'signal accuracy', v: '96.4%' },
+  { k: 'pairs monitored', v: '42' },
+  { k: 'engine uptime', v: '24 / 7' },
+]
+
 export function CocoFeatures() {
   return (
-    <section id="features" className="coco-light scroll-mt-24 border-t border-[var(--hairline)]">
-      <div className="mx-auto max-w-[1200px] px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        <div className="max-w-2xl">
-          <span className="coco-eyebrow">
-            <Cpu className="h-3 w-3" />
-            Engine capabilities
-          </span>
-          <h2 className="coco-display coco-title-gradient mt-5 text-[2rem] sm:text-[2.6rem] lg:text-[3rem]">
-            A full trading desk,
-            <br />
-            compressed into one engine.
-          </h2>
-          <p className="coco-muted mt-4 text-sm sm:text-base">
-            Six systems running in parallel. Each one handles a job a trading desk would normally
-            hire a person for.
-          </p>
-        </div>
+    <section id="features" className="coco-light scroll-mt-24">
+      <div className="mx-auto max-w-[1140px] px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <span className="coco-eyebrow">
+          <Cpu className="h-3 w-3" />
+          Engine capabilities
+        </span>
+        <h2 className="coco-display coco-title-gradient mx-auto mt-5 max-w-[22ch] text-balance text-[2rem] sm:text-[2.6rem] lg:text-[3rem]">
+          A full trading desk, compressed into one engine.
+        </h2>
+        <p className="coco-muted mx-auto mt-4 max-w-[58ch] text-pretty text-sm sm:text-base">
+          Six systems running in parallel. Each one handles a job a trading desk would normally hire
+          a person for.
+        </p>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {FEATURES.map((f) => (
             <article
               key={f.title}
-              className="coco-card p-6"
+              className="coco-card flex flex-col items-center p-7 text-center"
               data-testid={`feature-card-${f.title.toLowerCase().replace(/\s+/g, '-')}`}
             >
               <span className="coco-icon">
@@ -77,19 +79,14 @@ export function CocoFeatures() {
           ))}
         </div>
 
-        {/* Gradient stat band */}
         <div
-          className="coco-pastel mt-6 grid gap-8 rounded-[32px] p-8 sm:grid-cols-3 sm:p-10"
+          className="coco-pastel mt-6 grid gap-8 rounded-[32px] p-8 text-center sm:grid-cols-3 sm:p-10"
           data-testid="stat-band"
         >
-          {[
-            { k: 'signal accuracy', v: '96.4%' },
-            { k: 'pairs monitored', v: '42' },
-            { k: 'engine uptime', v: '24 / 7' },
-          ].map((s) => (
+          {STAT_BAND.map((s) => (
             <div key={s.k}>
               <p className="coco-mono text-[10px] uppercase text-[var(--dim)]">{s.k}</p>
-              <p className="coco-display mt-2 bg-[linear-gradient(140deg,#0036ff,#6d3bff)] bg-clip-text text-[2.4rem] text-transparent">
+              <p className="coco-display mt-2 bg-[linear-gradient(140deg,#1b3bd8,#6d3bff)] bg-clip-text text-[2.4rem] text-transparent">
                 {s.v}
               </p>
             </div>

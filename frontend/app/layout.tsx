@@ -4,7 +4,7 @@ import {
   Geist_Mono,
   JetBrains_Mono,
   Playfair_Display,
-  Schibsted_Grotesk,
+  Sora,
 } from 'next/font/google'
 import { AuthProvider } from '@/components/auth-provider'
 import { UpgradeGateProvider } from '@/components/upgrade-gate'
@@ -20,12 +20,12 @@ const playfair = Playfair_Display({
   variable: '--font-playfair',
   subsets: ['latin'],
 })
-const schibsted = Schibsted_Grotesk({
+const schibsted = Sora({
   variable: '--font-display',
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['500', '600', '700'],
 })
-const schibstedBody = Schibsted_Grotesk({
+const schibstedBody = Sora({
   variable: '--font-body',
   subsets: ['latin'],
   weight: ['400', '500', '600'],

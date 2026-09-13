@@ -27,17 +27,17 @@
   position: relative;
   isolation: isolate;
   background:
-    radial-gradient(70rem 34rem at 50% -14%, rgba(214, 233, 255, 0.42), transparent 58%),
-    radial-gradient(60rem 30rem at 50% -4%, rgba(16, 149, 229, 0.45), transparent 62%),
-    radial-gradient(46rem 30rem at 12% 18%, rgba(43, 34, 88, 0.85), transparent 66%),
-    radial-gradient(52rem 34rem at 92% 8%, rgba(16, 70, 233, 0.55), transparent 64%),
+    radial-gradient(120% 70% at 50% -12%, rgba(198, 222, 255, 0.3), transparent 58%),
+    radial-gradient(90% 60% at 50% 0%, rgba(58, 118, 255, 0.5), transparent 62%),
+    radial-gradient(70% 55% at 85% 22%, rgba(104, 72, 255, 0.34), transparent 66%),
     linear-gradient(
       180deg,
-      #0b1c5e 0%,
-      #0c1f7a 16%,
-      #1046e9 34%,
-      #14226f 58%,
-      #0e0c33 80%,
+      #12266e 0%,
+      #1639b4 14%,
+      #1d3fd0 28%,
+      #1b2f8f 45%,
+      #141a52 62%,
+      #0c0a2c 80%,
       var(--cosmic) 100%
     );
   color: #fff;
@@ -48,13 +48,8 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(120% 90% at 50% 10%, #000 20%, transparent 78%);
-  -webkit-mask-image: radial-gradient(120% 90% at 50% 10%, #000 20%, transparent 78%);
   pointer-events: none;
+  background: radial-gradient(120% 80% at 50% 110%, rgba(5, 4, 18, 0.85), transparent 62%);
 }
 
 .coco-dark::after {
@@ -62,7 +57,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  opacity: 0.22;
+  opacity: 0.1;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 }
@@ -75,11 +70,26 @@
 
 /* Calmer dark grading for blocks (cards, footer) */
 .coco-shade {
+  position: relative;
+  isolation: isolate;
   background:
-    radial-gradient(40rem 20rem at 8% -10%, rgba(16, 70, 233, 0.55), transparent 62%),
-    radial-gradient(34rem 18rem at 95% 10%, rgba(109, 59, 255, 0.32), transparent 66%),
-    linear-gradient(168deg, #111a55 0%, #0d1036 46%, #0a0620 78%, #06040f 100%);
+    radial-gradient(100% 70% at 50% -10%, rgba(62, 112, 255, 0.42), transparent 62%),
+    radial-gradient(70% 60% at 92% 4%, rgba(120, 82, 255, 0.28), transparent 68%),
+    linear-gradient(180deg, #16246c 0%, #131a52 34%, #0c0a2c 70%, #070518 100%);
   color: #fff;
+}
+
+.coco-dark .coco-title-gradient,
+.coco-shade .coco-title-gradient {
+  background-image: linear-gradient(
+    176deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.92) 42%,
+    rgba(255, 255, 255, 0.64) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Gradient headline chrome (dark + light zones) */
@@ -152,15 +162,15 @@
 /* Display type */
 .coco-display {
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.06;
+  font-weight: 700;
+  letter-spacing: -0.028em;
+  line-height: 1.05;
 }
 
 .coco-sub {
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
-  font-weight: 500;
-  letter-spacing: -0.012em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 /* Mono eyebrow tag */
@@ -180,7 +190,8 @@
   color: var(--ink);
 }
 
-.coco-dark .coco-eyebrow {
+.coco-dark .coco-eyebrow,
+.coco-shade .coco-eyebrow {
   border-color: rgba(255, 255, 255, 0.14);
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
   color: rgba(255, 255, 255, 0.88);
@@ -252,11 +263,13 @@
   transform: translateY(-1px);
 }
 
-.coco-dark .coco-btn-ghost {
+.coco-dark .coco-btn-ghost,
+.coco-shade .coco-btn-ghost {
   border-color: rgba(255, 255, 255, 0.32);
   color: #fff;
 }
-.coco-dark .coco-btn-ghost:hover {
+.coco-dark .coco-btn-ghost:hover,
+.coco-shade .coco-btn-ghost:hover {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
 }

@@ -36,58 +36,51 @@ const LICENSE_PERKS = [
 
 export function CocoPricing() {
   return (
-    <section id="pricing" className="coco-light scroll-mt-24 border-t border-[var(--hairline)]">
-      <div className="mx-auto max-w-[1200px] px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        <div className="max-w-2xl">
-          <span className="coco-eyebrow">
-            <Layers className="h-3 w-3" />
-            Access paths
-          </span>
-          <h2 className="coco-display coco-title-gradient mt-5 text-[2rem] sm:text-[2.6rem] lg:text-[3rem]">
-            Two ways in.
-            <br />
-            Same engine.
-          </h2>
-          <p className="coco-muted mt-4 text-sm sm:text-base">
-            Earn free access through our partner broker, or take a direct license and skip the setup
-            completely.
-          </p>
-        </div>
+    <section id="pricing" className="coco-light scroll-mt-24">
+      <div className="mx-auto max-w-[1140px] px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <span className="coco-eyebrow">
+          <Layers className="h-3 w-3" />
+          Access paths
+        </span>
+        <h2 className="coco-display coco-title-gradient mt-5 text-[2rem] sm:text-[2.6rem] lg:text-[3rem]">
+          Two ways in. Same engine.
+        </h2>
+        <p className="coco-muted mx-auto mt-4 max-w-[58ch] text-pretty text-sm sm:text-base">
+          Earn free access through our partner broker, or take a direct license and skip the setup
+          completely.
+        </p>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-2">
-          {/* Free access */}
-          <div className="coco-card p-6 sm:p-8" data-testid="pricing-free">
-            <div className="flex items-center justify-between gap-4">
-              <h3 className="coco-sub text-2xl">Partner access</h3>
-              <span className="coco-mono rounded-full border border-[#b9f3dd] bg-[#e6fff7] px-3 py-1 text-[10px] uppercase text-[#0f7a5a]">
-                $0
-              </span>
-            </div>
-            <p className="coco-muted mt-2 text-sm">
-              Three steps and the engine unlocks at no cost.
-            </p>
+        <div className="mx-auto mt-12 grid max-w-[980px] gap-5 lg:grid-cols-2">
+          {/* Partner access */}
+          <div
+            className="coco-card flex flex-col items-center p-7 text-center sm:p-9"
+            data-testid="pricing-free"
+          >
+            <span className="coco-mono rounded-full border border-[#b9f3dd] bg-[#e6fff7] px-3 py-1 text-[10px] uppercase text-[#0f7a5a]">
+              $0 partner
+            </span>
+            <h3 className="coco-sub mt-4 text-2xl">Partner access</h3>
+            <p className="coco-muted mt-2 text-sm">Three steps and the engine unlocks at no cost.</p>
 
-            <ol className="mt-7 flex flex-col">
+            <ol className="mt-7 flex w-full flex-col">
               {FREE_STEPS.map((step, i) => (
                 <li
                   key={step.title}
-                  className="flex gap-4 border-t border-[var(--hairline)] py-4 first:border-t-0 first:pt-0"
+                  className="flex flex-col items-center border-t border-[var(--hairline)] py-5 first:border-t-0 first:pt-0"
                 >
-                  <span className="coco-icon shrink-0">
+                  <span className="coco-icon">
                     <step.icon className="h-5 w-5" />
                   </span>
-                  <div>
-                    <p className="coco-mono text-[10px] uppercase tracking-[0.12em] text-[var(--dim)]">
-                      Step {i + 1}
-                    </p>
-                    <p className="coco-sub mt-1 text-[17px]">{step.title}</p>
-                    <p className="coco-muted mt-1 text-sm leading-relaxed">{step.desc}</p>
-                  </div>
+                  <p className="coco-mono mt-3 text-[10px] uppercase tracking-[0.12em] text-[var(--dim)]">
+                    Step {i + 1}
+                  </p>
+                  <p className="coco-sub mt-1 text-[17px]">{step.title}</p>
+                  <p className="coco-muted mt-1 max-w-[34ch] text-sm leading-relaxed">{step.desc}</p>
                 </li>
               ))}
             </ol>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-7 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <a
                 href="https://market-qx.pro/sign-up/?lid=619650"
                 target="_blank"
@@ -113,28 +106,26 @@ export function CocoPricing() {
 
           {/* License */}
           <div
-            className="coco-dark coco-shade relative overflow-hidden rounded-[20px] p-6 sm:p-8"
+            className="coco-shade relative flex flex-col items-center justify-center overflow-hidden rounded-[24px] p-7 text-center sm:p-9"
             data-testid="pricing-license"
           >
-            <div className="relative z-10 flex items-center justify-between gap-4">
-              <h3 className="coco-sub text-2xl text-white">Direct license</h3>
-              <span className="coco-mono rounded-full border border-white/18 bg-white/8 px-3 py-1 text-[10px] uppercase text-white/75">
-                instant
-              </span>
-            </div>
-            <p className="relative z-10 mt-2 text-sm text-white/60">
+            <span className="coco-mono rounded-full border border-white/18 bg-white/[0.08] px-3 py-1 text-[10px] uppercase text-white/75">
+              instant access
+            </span>
+            <h3 className="coco-sub mt-4 text-2xl text-white">Direct license</h3>
+            <p className="mt-2 max-w-[38ch] text-sm text-white/60">
               No broker, no waiting. One month of unrestricted engine access.
             </p>
 
-            <div className="relative z-10 mt-7 flex items-end gap-2">
-              <span className="coco-display text-[3.2rem] text-white">$99</span>
-              <span className="coco-mono mb-2 text-[11px] uppercase text-white/50">/ month</span>
+            <div className="mt-7 flex items-end justify-center gap-2">
+              <span className="coco-display text-[3.4rem] leading-none text-white">$99</span>
+              <span className="coco-mono mb-1 text-[11px] uppercase text-white/50">/ month</span>
             </div>
 
-            <ul className="relative z-10 mt-7 flex flex-col gap-3">
+            <ul className="mt-7 flex flex-col items-center gap-3">
               {LICENSE_PERKS.map((perk) => (
-                <li key={perk} className="flex items-start gap-3 text-sm text-white/80">
-                  <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--cyan)]/18 text-[#7fc9ff]">
+                <li key={perk} className="flex items-center gap-3 text-sm text-white/80">
+                  <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/12 text-[#9db8ff]">
                     <Check className="h-3 w-3" />
                   </span>
                   {perk}
@@ -146,7 +137,7 @@ export function CocoPricing() {
               href="https://t.me/Ayan_sx"
               target="_blank"
               rel="noopener noreferrer"
-              className="coco-btn coco-btn-primary relative z-10 mt-8 w-full"
+              className="coco-btn coco-btn-primary mt-8 w-full sm:w-auto"
               data-testid="pricing-license-cta"
             >
               <KeyRound className="h-4 w-4" />

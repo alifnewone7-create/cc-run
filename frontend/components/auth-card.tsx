@@ -106,7 +106,7 @@ export function AuthCard({ mode }: { mode: AuthMode }) {
         </Link>
       </div>
 
-      <div className="mt-7">
+      <div className="mt-7 text-center">
         <span className="coco-eyebrow">
           <Radar className="h-3 w-3" />
           {isLogin ? 'Engine access' : 'New operator'}
@@ -241,7 +241,7 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <main className="coco grid min-h-dvh grid-cols-1 lg:grid-cols-[0.95fr_1.05fr]" data-testid="auth-layout">
       {/* Dark brand panel */}
-      <aside className="coco-dark relative hidden flex-col justify-between p-10 xl:p-14 lg:flex">
+      <aside className="coco-shade relative hidden flex-col items-center justify-between p-10 text-center xl:p-14 lg:flex">
         <Link href="/" className="relative z-10 flex items-center gap-3">
           <Image src="/coco-ai.jpg" alt="Coco AI" width={40} height={40} className="rounded-xl" />
           <span className="coco-sub text-lg text-white">
@@ -249,18 +249,18 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
           </span>
         </Link>
 
-        <div className="relative z-10 max-w-md">
+        <div className="relative z-10 flex max-w-md flex-col items-center">
           <span className="coco-eyebrow">
             <Radar className="coco-orbit h-3 w-3" />
             Trading intelligence
           </span>
-          <h2 className="coco-display coco-title-gradient mt-6 text-[2.6rem] xl:text-[3.1rem]">
+          <h2 className="coco-display coco-title-gradient mt-6 text-[2.4rem] xl:text-[2.9rem]">
             The market never sleeps. Neither does Coco AI.
           </h2>
-          <ul className="mt-9 flex flex-col gap-4">
+          <ul className="mt-9 flex flex-col items-center gap-4">
             {BRAND_POINTS.map((p) => (
-              <li key={p.text} className="flex items-start gap-3">
-                <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/12 bg-white/6 text-[#7fb6ff]">
+              <li key={p.text} className="flex flex-col items-center gap-2">
+                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/12 bg-white/[0.06] text-[#9db8ff]">
                   <p.icon className="h-4 w-4" />
                 </span>
                 <span className="text-sm leading-relaxed text-white/65">{p.text}</span>
