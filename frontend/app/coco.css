@@ -421,7 +421,7 @@
   box-shadow: rgba(255, 255, 255, 0.22) 0 1px 0 0 inset;
 }
 
-/* ── Engine pipeline diagram ─────────────────────────────────────────── */
+/* ── Engine system map ──────────────────────────────────────────────── */
 
 .coco-engine-panel {
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -434,196 +434,112 @@
     rgba(4, 8, 40, 0.5) 0 28px 70px -20px;
 }
 
-/* Gap connectors between nodes and core */
-.coco-link {
-  display: none;
-}
-@media (min-width: 768px) {
-  .coco-link {
-    position: absolute;
-    top: 50%;
-    display: block;
-    height: 2px;
-    width: 44px;
-    overflow: hidden;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.14);
-    transform: translateY(-50%);
-  }
-  .coco-link-out {
-    right: -44px;
-  }
-  .coco-link-in {
-    left: -44px;
-  }
+.coco-cell {
+  opacity: 0;
+  animation: coco-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0ms);
 }
 
-.coco-link-pulse {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 45%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, transparent, #dce8ff, transparent);
-  animation: coco-link 2.4s linear infinite;
-}
-.coco-link-in .coco-link-pulse {
-  animation-name: coco-link-rev;
-}
-@keyframes coco-link {
-  from {
-    left: -50%;
-  }
-  to {
-    left: 105%;
-  }
-}
-@keyframes coco-link-rev {
-  from {
-    left: -50%;
-  }
-  to {
-    left: 105%;
-  }
-}
-
-.coco-vline {
-  position: absolute;
-  left: 50%;
-  top: 8px;
-  bottom: 8px;
-  width: 2px;
+.coco-frame {
+  position: relative;
+  height: 96px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.015));
   overflow: hidden;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  transform: translateX(-50%);
+  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.coco-vline::after {
-  content: '';
+.coco-frame:hover {
+  border-color: rgba(157, 184, 255, 0.5);
+  transform: translateY(-3px);
+}
+
+@media (min-width: 768px) {
+  .coco-frame {
+    height: 116px;
+  }
+}
+
+.coco-frame-core {
+  border-color: rgba(157, 184, 255, 0.4);
+  background:
+    radial-gradient(80% 80% at 50% 0%, rgba(120, 156, 255, 0.32), transparent 68%),
+    linear-gradient(180deg, #131a54 0%, #0b1036 62%, #070a22 100%);
+  box-shadow: rgba(40, 80, 255, 0.35) 0 0 54px -10px;
+}
+
+.coco-corner {
   position: absolute;
-  left: 0;
-  right: 0;
-  height: 26%;
-  border-radius: 999px;
-  background: linear-gradient(180deg, transparent, #dce8ff, transparent);
-  animation: coco-vline 2.8s linear infinite;
+  height: 5px;
+  width: 5px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.35);
+  z-index: 5;
 }
-@keyframes coco-vline {
-  from {
-    top: -30%;
-  }
-  to {
-    top: 104%;
-  }
+.coco-corner-tl {
+  top: 5px;
+  left: 5px;
+}
+.coco-corner-tr {
+  top: 5px;
+  right: 5px;
+}
+.coco-corner-bl {
+  bottom: 5px;
+  left: 5px;
+}
+.coco-corner-br {
+  bottom: 5px;
+  right: 5px;
 }
 
 .coco-dash {
-  animation: coco-dash 2.8s linear infinite;
+  animation: coco-dash 3s linear infinite;
 }
 @keyframes coco-dash {
   from {
-    stroke-dashoffset: 366;
+    stroke-dashoffset: 100;
   }
   to {
     stroke-dashoffset: 0;
   }
 }
 
-.coco-node {
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.coco-node:hover {
-  border-color: rgba(157, 184, 255, 0.45);
-  transform: translateY(-2px);
-}
-
-.coco-node-icon {
-  display: inline-flex;
-  height: 34px;
-  width: 34px;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.07);
-  color: #9db8ff;
-}
-
-.coco-node-track {
-  position: relative;
-  display: block;
-  height: 4px;
-  width: 40px;
-  flex-shrink: 0;
-  overflow: hidden;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.coco-node-fill {
-  position: absolute;
-  inset: 0;
-  display: block;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #3f6bff, #bcd4ff);
-  transform-origin: left;
-  animation: coco-node-fill 2.8s ease-in-out infinite;
-}
-@keyframes coco-node-fill {
-  0%,
-  100% {
-    transform: scaleX(0.05);
-    opacity: 0.5;
-  }
-  45% {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-  70% {
-    transform: scaleX(1);
-    opacity: 0.7;
-  }
-}
-
-.coco-core {
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background:
-    radial-gradient(80% 70% at 50% 0%, rgba(120, 156, 255, 0.35), transparent 65%),
-    linear-gradient(180deg, #141b57 0%, #0b1036 60%, #070a22 100%);
-  box-shadow:
-    rgba(255, 255, 255, 0.12) 0 1px 0 0 inset,
-    rgba(40, 80, 255, 0.35) 0 0 48px -8px;
-  text-align: center;
-}
-
 .coco-core-ring {
   position: absolute;
-  inset: -5px;
-  border-radius: 26px;
+  inset: 22%;
+  border-radius: 18px;
   padding: 1px;
   background: conic-gradient(
     from 0deg,
     transparent 0deg,
     rgba(157, 184, 255, 0.05) 140deg,
-    #bcd4ff 200deg,
+    #dce8ff 200deg,
     rgba(157, 184, 255, 0.05) 260deg,
     transparent 360deg
   );
   mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
   -webkit-mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-  animation: coco-orbit 4.5s linear infinite;
+  animation: coco-orbit 5s linear infinite;
+}
+
+.coco-core-glow {
+  position: absolute;
+  inset: 18%;
+  border-radius: 999px;
+  background: radial-gradient(closest-side, rgba(143, 178, 255, 0.5), transparent);
+  filter: blur(14px);
+  animation: coco-pulse 3s ease-in-out infinite;
 }
 
 .coco-core-lights {
   position: absolute;
-  bottom: 10px;
+  bottom: 9px;
   left: 50%;
   display: flex;
   gap: 5px;
   transform: translateX(-50%);
+  z-index: 6;
 }
 .coco-core-lights span {
   height: 4px;
@@ -639,32 +555,69 @@
   animation-delay: 0.7s;
 }
 
-.coco-fill {
-  transform-origin: left;
-  animation: coco-fill 4.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+/* Radar visual */
+.coco-radar {
+  position: absolute;
+  inset: 8%;
+  border-radius: 999px;
+  background: conic-gradient(
+    from 0deg,
+    rgba(143, 178, 255, 0.45) 0deg,
+    rgba(143, 178, 255, 0) 70deg,
+    transparent 360deg
+  );
+  mask: radial-gradient(closest-side, #000 40%, #000 99%, transparent);
+  -webkit-mask: radial-gradient(closest-side, #000 40%, #000 99%, transparent);
+  animation: coco-orbit 3.6s linear infinite;
 }
-@keyframes coco-fill {
-  0% {
-    transform: scaleX(0);
-  }
-  70% {
-    transform: scaleX(1);
-  }
+.coco-radar-ring {
+  position: absolute;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+/* Events spinner */
+.coco-spin {
+  position: absolute;
+  inset: 22%;
+  border-radius: 999px;
+  border: 1.5px dashed rgba(255, 255, 255, 0.28);
+  animation: coco-orbit 8s linear infinite;
+}
+
+/* Device segments */
+.coco-seg {
+  background: rgba(255, 255, 255, 0.14);
+  animation: coco-seg 3.2s ease-in-out infinite;
+}
+@keyframes coco-seg {
+  0%,
   100% {
-    transform: scaleX(1);
-    opacity: 0.35;
+    background: rgba(255, 255, 255, 0.14);
   }
+  40%,
+  70% {
+    background: rgba(169, 196, 255, 0.85);
+  }
+}
+
+.coco-seg-btn {
+  background: linear-gradient(90deg, #3f6bff, #7a9cff);
+  animation: coco-ticker 3.2s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .coco-dash,
-  .coco-link-pulse,
-  .coco-vline::after,
-  .coco-node-fill,
   .coco-core-ring,
+  .coco-core-glow,
   .coco-core-lights span,
-  .coco-fill {
+  .coco-radar,
+  .coco-spin,
+  .coco-seg,
+  .coco-seg-btn,
+  .coco-cell {
     animation: none !important;
+    opacity: 1 !important;
   }
 }
 
