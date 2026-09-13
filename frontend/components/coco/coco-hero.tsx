@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Radar, Activity, ShieldHalf, Timer, ChartCandlestick } from 'lucide-react'
+import { ArrowRight, Activity, ShieldHalf, Timer, ChartCandlestick } from 'lucide-react'
 
 const STATS = [
   { icon: Activity, title: 'Real time scan', desc: 'Every tick read as it prints' },
@@ -16,15 +16,10 @@ const TERMINAL_LINES = [
 export function CocoHero() {
   return (
     <section id="about" className="relative overflow-hidden scroll-mt-24">
-      <div className="mx-auto max-w-[1000px] px-4 pb-20 pt-14 text-center sm:px-6 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-24">
-        <span className="coco-eyebrow coco-rise" style={{ '--d': '40ms' } as React.CSSProperties}>
-          <Radar className="coco-orbit h-3 w-3" />
-          Autonomous market engine
-        </span>
-
+      <div className="mx-auto max-w-[1000px] px-4 pb-20 pt-20 text-center sm:px-6 sm:pb-24 sm:pt-28 lg:pb-28 lg:pt-32">
         <h1
-          className="coco-display coco-title-gradient coco-rise mx-auto mt-7 max-w-[18ch] text-balance text-[2.5rem] sm:text-[3.4rem] lg:text-[4.2rem]"
-          style={{ '--d': '110ms' } as React.CSSProperties}
+          className="coco-display coco-title-gradient coco-rise mx-auto max-w-[18ch] text-balance text-[2.5rem] sm:text-[3.4rem] lg:text-[4.2rem]"
+          style={{ '--d': '60ms' } as React.CSSProperties}
           data-testid="hero-heading"
         >
           The market never sleeps. Neither does{' '}
