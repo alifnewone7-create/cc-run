@@ -421,17 +421,31 @@
   box-shadow: rgba(255, 255, 255, 0.22) 0 1px 0 0 inset;
 }
 
-/* ── Engine system map ──────────────────────────────────────────────── */
+/* ── Engine system map (chip grid) ──────────────────────────────────── */
 
 .coco-engine-panel {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background:
-    radial-gradient(70% 60% at 50% -10%, rgba(90, 130, 255, 0.22), transparent 62%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+    radial-gradient(70% 60% at 50% -10%, rgba(90, 130, 255, 0.2), transparent 62%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
   backdrop-filter: blur(18px);
   box-shadow:
     rgba(255, 255, 255, 0.08) 0 1px 0 0 inset,
     rgba(4, 8, 40, 0.5) 0 28px 70px -20px;
+}
+
+/* faint circuit texture */
+.coco-pcb {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 26px 26px, 52px 52px;
+  mask-image: radial-gradient(120% 100% at 50% 50%, #000 25%, transparent 75%);
+  -webkit-mask-image: radial-gradient(120% 100% at 50% 50%, #000 25%, transparent 75%);
 }
 
 .coco-cell {
@@ -440,61 +454,142 @@
   animation-delay: var(--d, 0ms);
 }
 
-.coco-frame {
+/* Chip frame */
+.coco-chip {
   position: relative;
-  height: 96px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.015));
-  overflow: hidden;
-  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  display: grid;
+  place-items: center;
+  height: 92px;
+  width: 100%;
+  max-width: 142px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02));
+  box-shadow:
+    rgba(255, 255, 255, 0.1) 0 1px 0 0 inset,
+    rgba(4, 8, 40, 0.45) 0 14px 30px -14px;
+  color: #dbe7ff;
+  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease;
 }
-.coco-frame:hover {
-  border-color: rgba(157, 184, 255, 0.5);
+.coco-chip:hover {
+  border-color: rgba(180, 203, 255, 0.6);
   transform: translateY(-3px);
+  box-shadow: rgba(120, 160, 255, 0.25) 0 18px 40px -18px;
 }
 
 @media (min-width: 768px) {
-  .coco-frame {
-    height: 116px;
+  .coco-chip {
+    height: 104px;
+    max-width: 154px;
+  }
+  .coco-chip-core {
+    height: 120px;
+    max-width: 172px;
   }
 }
 
-.coco-frame-core {
-  border-color: rgba(157, 184, 255, 0.4);
+.coco-chip-core {
+  height: 104px;
+  max-width: 158px;
+  border-color: rgba(180, 203, 255, 0.55);
   background:
-    radial-gradient(80% 80% at 50% 0%, rgba(120, 156, 255, 0.32), transparent 68%),
-    linear-gradient(180deg, #131a54 0%, #0b1036 62%, #070a22 100%);
-  box-shadow: rgba(40, 80, 255, 0.35) 0 0 54px -10px;
+    radial-gradient(85% 80% at 50% 0%, rgba(120, 156, 255, 0.34), transparent 68%),
+    linear-gradient(165deg, #18205f 0%, #0c1139 60%, #070a24 100%);
+  box-shadow:
+    rgba(255, 255, 255, 0.14) 0 1px 0 0 inset,
+    rgba(60, 100, 255, 0.4) 0 0 58px -10px;
 }
 
-.coco-corner {
+/* chip pins */
+.coco-pins {
   position: absolute;
-  height: 5px;
-  width: 5px;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  transform: translateY(-50%);
+}
+.coco-pins i {
+  display: block;
+  height: 2px;
+  width: 6px;
   border-radius: 1px;
-  background: rgba(255, 255, 255, 0.35);
-  z-index: 5;
+  background: rgba(255, 255, 255, 0.28);
 }
-.coco-corner-tl {
-  top: 5px;
-  left: 5px;
+.coco-pins-l {
+  left: -6px;
 }
-.coco-corner-tr {
-  top: 5px;
-  right: 5px;
+.coco-pins-r {
+  right: -6px;
 }
-.coco-corner-bl {
-  bottom: 5px;
-  left: 5px;
+
+.coco-notch {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  height: 8px;
+  width: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  border-left: 1px solid rgba(255, 255, 255, 0.35);
+  border-top-left-radius: 3px;
 }
-.coco-corner-br {
-  bottom: 5px;
-  right: 5px;
+
+/* label pill */
+.coco-tag {
+  margin-top: 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 4px 10px;
+  font-family: var(--font-tech), ui-monospace, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+}
+
+.coco-glyph {
+  height: 58px;
+  width: 80px;
+  filter: drop-shadow(0 0 10px rgba(143, 178, 255, 0.35));
+}
+
+/* Wires */
+.coco-vline {
+  position: absolute;
+  left: 50%;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateX(-50%);
+}
+.coco-vline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 22%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, transparent, #e8f0ff, transparent);
+  animation: coco-vline 2.6s linear infinite;
+}
+@keyframes coco-vline {
+  from {
+    top: -26%;
+  }
+  to {
+    top: 104%;
+  }
 }
 
 .coco-dash {
-  animation: coco-dash 3s linear infinite;
+  animation: coco-dash 2.6s linear infinite;
 }
 @keyframes coco-dash {
   from {
@@ -505,16 +600,17 @@
   }
 }
 
+/* Core */
 .coco-core-ring {
   position: absolute;
-  inset: 22%;
-  border-radius: 18px;
+  inset: 24%;
+  border-radius: 16px;
   padding: 1px;
   background: conic-gradient(
     from 0deg,
     transparent 0deg,
     rgba(157, 184, 255, 0.05) 140deg,
-    #dce8ff 200deg,
+    #e8f0ff 200deg,
     rgba(157, 184, 255, 0.05) 260deg,
     transparent 360deg
   );
@@ -525,96 +621,88 @@
 
 .coco-core-glow {
   position: absolute;
-  inset: 18%;
+  inset: 20%;
   border-radius: 999px;
   background: radial-gradient(closest-side, rgba(143, 178, 255, 0.5), transparent);
   filter: blur(14px);
   animation: coco-pulse 3s ease-in-out infinite;
 }
 
-.coco-core-lights {
-  position: absolute;
-  bottom: 9px;
-  left: 50%;
-  display: flex;
-  gap: 5px;
-  transform: translateX(-50%);
-  z-index: 6;
+/* Glyph micro animations */
+.coco-candle {
+  transform-origin: center bottom;
+  animation: coco-candle 2.4s ease-in-out infinite;
 }
-.coco-core-lights span {
-  height: 4px;
-  width: 4px;
-  border-radius: 999px;
-  background: #9db8ff;
-  animation: coco-ticker 1.4s steps(2) infinite;
-}
-.coco-core-lights span:nth-child(2) {
-  animation-delay: 0.35s;
-}
-.coco-core-lights span:nth-child(3) {
-  animation-delay: 0.7s;
+@keyframes coco-candle {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translateY(3px);
+  }
+  45% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Radar visual */
-.coco-radar {
-  position: absolute;
-  inset: 8%;
-  border-radius: 999px;
-  background: conic-gradient(
-    from 0deg,
-    rgba(143, 178, 255, 0.45) 0deg,
-    rgba(143, 178, 255, 0) 70deg,
-    transparent 360deg
-  );
-  mask: radial-gradient(closest-side, #000 40%, #000 99%, transparent);
-  -webkit-mask: radial-gradient(closest-side, #000 40%, #000 99%, transparent);
-  animation: coco-orbit 3.6s linear infinite;
-}
-.coco-radar-ring {
-  position: absolute;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+.coco-node-dot {
+  animation: coco-pulse 2.2s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
-/* Events spinner */
-.coco-spin {
-  position: absolute;
-  inset: 22%;
-  border-radius: 999px;
-  border: 1.5px dashed rgba(255, 255, 255, 0.28);
-  animation: coco-orbit 8s linear infinite;
-}
-
-/* Device segments */
-.coco-seg {
-  background: rgba(255, 255, 255, 0.14);
+.coco-seg-dot {
+  opacity: 0.25;
   animation: coco-seg 3.2s ease-in-out infinite;
 }
 @keyframes coco-seg {
   0%,
   100% {
-    background: rgba(255, 255, 255, 0.14);
+    opacity: 0.25;
   }
   40%,
   70% {
-    background: rgba(169, 196, 255, 0.85);
+    opacity: 1;
   }
 }
 
-.coco-seg-btn {
-  background: linear-gradient(90deg, #3f6bff, #7a9cff);
-  animation: coco-ticker 3.2s ease-in-out infinite;
+.coco-seg-bar {
+  opacity: 0.35;
+  animation: coco-seg 3.2s ease-in-out infinite;
+  animation-delay: 1.4s;
+}
+
+.coco-ledger-bar {
+  animation: coco-ledger 1.8s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+@keyframes coco-ledger {
+  0%,
+  100% {
+    transform: scaleY(0.45);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.coco-orbit-dash {
+  animation: coco-dash 2.4s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .coco-dash,
+  .coco-orbit-dash,
   .coco-core-ring,
   .coco-core-glow,
-  .coco-core-lights span,
-  .coco-radar,
-  .coco-spin,
-  .coco-seg,
-  .coco-seg-btn,
+  .coco-candle,
+  .coco-node-dot,
+  .coco-seg-dot,
+  .coco-seg-bar,
+  .coco-ledger-bar,
   .coco-cell {
     animation: none !important;
     opacity: 1 !important;
