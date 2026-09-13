@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono, Playfair_Display } from 'next/font/google'
+import { Geist, Geist_Mono, Inter, Inter_Tight, Playfair_Display } from 'next/font/google'
 import { AuthProvider } from '@/components/auth-provider'
 import { UpgradeGateProvider } from '@/components/upgrade-gate'
 import './globals.css'
+import './coco.css'
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
 const geistMono = Geist_Mono({
@@ -13,38 +14,48 @@ const playfair = Playfair_Display({
   variable: '--font-playfair',
   subsets: ['latin'],
 })
+const interTight = Inter_Tight({
+  variable: '--font-display',
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+})
+const interBody = Inter({
+  variable: '--font-body',
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+})
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sweetex.ai'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://coco.ai'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Sweetex AI — Smart Algorithmic Trading',
+  title: 'Coco AI | Autonomous Trading Intelligence',
   description:
-    'Sweetex AI is an advanced algorithmic trading assistant that helps you trade smarter with automated, data-driven signals. Get free access or buy a direct license today.',
+    'Coco AI is an autonomous trading engine that reads the market in real time and delivers precise, data driven signals. Start free or activate a direct license today.',
   generator: 'iamhear',
   icons: {
-    icon: '/sweetex-logo.jpg',
-    apple: '/sweetex-logo.jpg',
+    icon: '/coco-ai.jpg',
+    apple: '/coco-ai.jpg',
   },
   openGraph: {
-    title: 'Sweetex AI | Smart Algorithmic Trading',
+    title: 'Coco AI | Autonomous Trading Intelligence',
     description:
-      'Trade smarter with Sweetex AI | automated, data-driven trading signals. Start your trading career today.',
-    images: ['/sweetex-logo.jpg'],
+      'Real time market scanning, AI verified entries and 24/7 signals | trade with a machine that never blinks.',
+    images: ['/coco-ai.jpg'],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sweetex AI — Smart Algorithmic Trading',
+    title: 'Coco AI | Autonomous Trading Intelligence',
     description:
-      'Trade smarter with Sweetex AI — automated, data-driven trading signals.',
-    images: ['/sweetex-logo.jpg'],
+      'Real time market scanning, AI verified entries and 24/7 signals | trade with a machine that never blinks.',
+    images: ['/coco-ai.jpg'],
   },
 }
 
 export const viewport: Viewport = {
   colorScheme: 'dark',
-  themeColor: '#1a1530',
+  themeColor: '#0f071d',
 }
 
 export default function RootLayout({
@@ -55,7 +66,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${interTight.variable} ${interBody.variable}`}
     >
       <body className="bg-background font-sans antialiased">
         <AuthProvider>

@@ -4,11 +4,20 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Lock, Mail, User, Eye, EyeOff, Check, Loader2 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { StarField } from '@/components/star-field'
+import {
+  Lock,
+  Mail,
+  UserRound,
+  Eye,
+  EyeOff,
+  LoaderCircle,
+  ArrowRight,
+  Radar,
+  ShieldHalf,
+  Zap,
+  CircleAlert,
+} from 'lucide-react'
 import { useAuth } from '@/components/auth-provider'
-import { cn } from '@/lib/utils'
 
 function friendlyError(code: string): string {
   switch (code) {
@@ -33,14 +42,11 @@ type AuthMode = 'login' | 'registration'
 
 function FieldIcon({ children }: { children: React.ReactNode }) {
   return (
-    <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+    <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[#9a9aa3]">
       {children}
     </span>
   )
 }
-
-const inputClass =
-  'h-12 w-full rounded-xl border border-border bg-input/40 pl-10 pr-3 text-sm text-foreground placeholder:text-muted-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-ring/40'
 
 export function AuthCard({ mode }: { mode: AuthMode }) {
   const router = useRouter()
@@ -56,7 +62,6 @@ export function AuthCard({ mode }: { mode: AuthMode }) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError('')
-
     setSubmitting(true)
     try {
       if (isLogin) {
@@ -76,65 +81,51 @@ export function AuthCard({ mode }: { mode: AuthMode }) {
   }
 
   return (
-    <div className="auth-card-enter border-luxe surface-luxe card-corner-glow relative w-full max-w-md rounded-3xl p-6 shadow-2xl sm:p-8">
-      {/* Tabs */}
-      <div
-        className="auth-rise relative z-10 grid grid-cols-2 gap-1 rounded-xl border border-border bg-input/30 p-1"
-        style={{ '--rise-delay': '80ms' } as React.CSSProperties}
-      >
+    <div
+      className="coco-rise w-full max-w-[440px] rounded-[20px] border border-[var(--hairline)] bg-white p-6 shadow-[rgba(0,0,0,0.04)_0_12px_24px_-8px,rgba(0,0,0,0.04)_0_0_0_1px] sm:p-8"
+      data-testid="auth-card"
+    >
+      <div className="grid grid-cols-2 gap-1 rounded-full border border-[var(--hairline)] bg-[var(--mist)] p-1">
         <Link
           href="/login"
+          data-active={isLogin}
           aria-current={isLogin ? 'page' : undefined}
-          className={cn(
-            'flex h-10 items-center justify-center rounded-lg text-sm font-semibold transition-colors',
-            isLogin
-              ? 'btn-luxe text-primary-foreground'
-              : 'text-muted-foreground hover:text-foreground',
-          )}
+          className="coco-tab"
+          data-testid="auth-tab-login"
         >
           Login
         </Link>
         <Link
           href="/registration"
+          data-active={!isLogin}
           aria-current={!isLogin ? 'page' : undefined}
-          className={cn(
-            'flex h-10 items-center justify-center rounded-lg text-sm font-semibold transition-colors',
-            !isLogin
-              ? 'btn-luxe text-primary-foreground'
-              : 'text-muted-foreground hover:text-foreground',
-          )}
+          className="coco-tab"
+          data-testid="auth-tab-registration"
         >
           Registration
         </Link>
       </div>
 
-      {/* Heading */}
-      <div
-        className="auth-rise relative z-10 mt-6 text-center"
-        style={{ '--rise-delay': '150ms' } as React.CSSProperties}
-      >
-        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-          {isLogin ? 'Welcome back' : 'Create your account'}
+      <div className="mt-7">
+        <span className="coco-eyebrow">
+          <Radar className="h-3 w-3" />
+          {isLogin ? 'Engine access' : 'New operator'}
+        </span>
+        <h1 className="coco-display mt-4 text-[1.9rem] sm:text-[2.1rem]" data-testid="auth-heading">
+          {isLogin ? 'Welcome back.' : 'Create your account.'}
         </h1>
-        <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">
+        <p className="coco-muted mt-2 text-sm leading-relaxed">
           {isLogin
-            ? 'Sign in to access your Sweetex AI trading dashboard.'
-            : 'Join Sweetex AI and start trading with automated signals.'}
+            ? 'Sign in to reach your Coco AI trading console.'
+            : 'Set up an operator profile and the engine starts reading the tape for you.'}
         </p>
       </div>
 
-      {/* Form */}
-      <form
-        className="relative z-10 mt-7 flex flex-col gap-4"
-        onSubmit={handleSubmit}
-      >
+      <form className="mt-7 flex flex-col gap-3.5" onSubmit={handleSubmit}>
         {!isLogin && (
-          <div
-            className="auth-rise relative"
-            style={{ '--rise-delay': '210ms' } as React.CSSProperties}
-          >
+          <div className="relative">
             <FieldIcon>
-              <User className="h-[18px] w-[18px]" />
+              <UserRound className="h-[18px] w-[18px]" />
             </FieldIcon>
             <input
               type="text"
@@ -144,15 +135,13 @@ export function AuthCard({ mode }: { mode: AuthMode }) {
               onChange={(e) => setName(e.target.value)}
               placeholder="Full name"
               autoComplete="name"
-              className={inputClass}
+              className="coco-input"
+              data-testid="auth-input-name"
             />
           </div>
         )}
 
-        <div
-          className="auth-rise relative"
-          style={{ '--rise-delay': '270ms' } as React.CSSProperties}
-        >
+        <div className="relative">
           <FieldIcon>
             <Mail className="h-[18px] w-[18px]" />
           </FieldIcon>
@@ -164,14 +153,12 @@ export function AuthCard({ mode }: { mode: AuthMode }) {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email address"
             autoComplete="email"
-            className={inputClass}
+            className="coco-input"
+            data-testid="auth-input-email"
           />
         </div>
 
-        <div
-          className="auth-rise relative"
-          style={{ '--rise-delay': '330ms' } as React.CSSProperties}
-        >
+        <div className="relative">
           <FieldIcon>
             <Lock className="h-[18px] w-[18px]" />
           </FieldIcon>
@@ -183,13 +170,15 @@ export function AuthCard({ mode }: { mode: AuthMode }) {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             autoComplete={isLogin ? 'current-password' : 'new-password'}
-            className={cn(inputClass, 'pr-11')}
+            className="coco-input"
+            data-testid="auth-input-password"
           />
           <button
             type="button"
             onClick={() => setShowPassword((v) => !v)}
             aria-label={showPassword ? 'Hide password' : 'Show password'}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
+            className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#9a9aa3] transition-colors hover:text-[var(--ink)]"
+            data-testid="auth-toggle-password"
           >
             {showPassword ? (
               <EyeOff className="h-[18px] w-[18px]" />
@@ -202,19 +191,21 @@ export function AuthCard({ mode }: { mode: AuthMode }) {
         {error && (
           <p
             role="alert"
-            className="rounded-xl border border-destructive/40 bg-destructive/10 px-3 py-2.5 text-sm text-destructive"
+            className="flex items-start gap-2 rounded-lg border border-[#ffd0cd] bg-[#fff5f4] px-3 py-2.5 text-sm text-[#c0322a]"
+            data-testid="auth-error"
           >
+            <CircleAlert className="mt-0.5 h-4 w-4 shrink-0" />
             {error}
           </p>
         )}
 
-        <Button
+        <button
           type="submit"
           disabled={submitting}
-          className="btn-luxe auth-rise mt-1 h-12 w-full gap-2 rounded-xl text-base font-semibold disabled:opacity-70"
-          style={{ '--rise-delay': '440ms' } as React.CSSProperties}
+          className="coco-btn coco-btn-primary mt-2 h-12 w-full disabled:opacity-70"
+          data-testid="auth-submit"
         >
-          {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
+          {submitting && <LoaderCircle className="h-4 w-4 animate-spin" />}
           {submitting
             ? isLogin
               ? 'Signing in...'
@@ -222,18 +213,16 @@ export function AuthCard({ mode }: { mode: AuthMode }) {
             : isLogin
               ? 'Sign in'
               : 'Create account'}
-        </Button>
+          {!submitting && <ArrowRight className="h-4 w-4" />}
+        </button>
       </form>
 
-      {/* Footer switch */}
-      <p
-        className="auth-rise relative z-10 mt-6 text-center text-sm text-muted-foreground"
-        style={{ '--rise-delay': '500ms' } as React.CSSProperties}
-      >
+      <p className="coco-muted mt-6 text-center text-sm">
         {isLogin ? "Don't have an account? " : 'Already have an account? '}
         <Link
           href={isLogin ? '/registration' : '/login'}
-          className="font-semibold text-accent transition-colors hover:text-foreground"
+          className="font-semibold text-[var(--iris)] transition-opacity hover:opacity-70"
+          data-testid="auth-switch-link"
         >
           {isLogin ? 'Register now' : 'Sign in'}
         </Link>
@@ -242,74 +231,67 @@ export function AuthCard({ mode }: { mode: AuthMode }) {
   )
 }
 
-const brandPoints = [
-  'Automated AI trading signals in real time',
-  'AI that analyzes markets faster than you can blink',
-  'Trusted by traders worldwide',
+const BRAND_POINTS = [
+  { icon: Radar, text: 'Autonomous scanning across OTC and real pairs' },
+  { icon: Zap, text: 'Verdicts delivered the second confluence lands' },
+  { icon: ShieldHalf, text: 'Confidence scoring on every single entry' },
 ]
 
 export function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <main className="relative grid min-h-dvh grid-cols-1 bg-background lg:grid-cols-2">
-      <StarField />
-      {/* Branding panel - visible on large screens */}
-      <aside className="relative z-10 hidden flex-col justify-between border-r border-border p-10 xl:p-14 lg:flex">
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/sweetex-logo.jpg"
-            alt="Sweetex AI"
-            width={44}
-            height={44}
-            className="rounded-xl"
-          />
-          <span className="text-xl font-bold tracking-tight">
-            Sweetex <span className="text-shine">AI</span>
+    <main className="coco grid min-h-dvh grid-cols-1 lg:grid-cols-[0.95fr_1.05fr]" data-testid="auth-layout">
+      {/* Dark brand panel */}
+      <aside className="coco-dark relative hidden flex-col justify-between p-10 xl:p-14 lg:flex">
+        <Link href="/" className="relative z-10 flex items-center gap-3">
+          <Image src="/coco-ai.jpg" alt="Coco AI" width={40} height={40} className="rounded-xl" />
+          <span className="coco-sub text-lg text-white">
+            Coco <span className="coco-accent">AI</span>
           </span>
         </Link>
 
-        <div className="max-w-md">
-          <h2 className="text-balance text-4xl font-bold leading-tight tracking-tight xl:text-5xl">
-            Trade smarter with AI powered signals.
+        <div className="relative z-10 max-w-md">
+          <span className="coco-eyebrow">
+            <Radar className="coco-orbit h-3 w-3" />
+            Trading intelligence
+          </span>
+          <h2 className="coco-display mt-6 text-[2.6rem] text-white xl:text-[3.1rem]">
+            The market never sleeps. Neither does Coco AI.
           </h2>
-          <ul className="mt-8 flex flex-col gap-4">
-            {brandPoints.map((point) => (
-              <li key={point} className="flex items-start gap-3">
-                <span className="btn-luxe mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                  <Check className="h-3.5 w-3.5 text-primary-foreground" />
+          <ul className="mt-9 flex flex-col gap-4">
+            {BRAND_POINTS.map((p) => (
+              <li key={p.text} className="flex items-start gap-3">
+                <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/12 bg-white/6 text-[#7fb6ff]">
+                  <p.icon className="h-4 w-4" />
                 </span>
-                <span className="text-pretty text-sm leading-relaxed text-muted-foreground">
-                  {point}
-                </span>
+                <span className="text-sm leading-relaxed text-white/65">{p.text}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <p className="text-xs text-muted-foreground">
-          {'© '}
-          {new Date().getFullYear()} Sweetex AI. All rights reserved.
+        <p className="coco-mono relative z-10 text-[11px] uppercase text-white/35">
+          © {new Date().getFullYear()} Coco AI
         </p>
       </aside>
 
-      {/* Form panel */}
-      <div className="relative z-10 flex flex-col items-center justify-center px-4 py-12 sm:px-6">
-        <div className="auth-logo-enter relative z-10 mb-8 flex flex-col items-center gap-3 lg:hidden">
-          <Link href="/" className="relative flex items-center justify-center">
-            <span className="auth-logo-glow" aria-hidden="true" />
+      {/* Light form panel */}
+      <div className="coco-light flex flex-col items-center justify-center px-4 py-12 sm:px-6">
+        <div className="mb-8 flex flex-col items-center gap-3 lg:hidden">
+          <Link href="/" className="flex items-center justify-center">
             <Image
-              src="/sweetex-logo.jpg"
-              alt="Sweetex AI"
-              width={64}
-              height={64}
-              className="rounded-2xl shadow-xl ring-1 ring-white/15"
+              src="/coco-ai.jpg"
+              alt="Coco AI"
+              width={60}
+              height={60}
+              className="rounded-2xl ring-1 ring-[var(--hairline)]"
             />
           </Link>
           <div className="text-center">
-            <span className="text-2xl font-bold tracking-tight">
-              Sweetex <span className="text-shine">AI</span>
+            <span className="coco-sub text-xl">
+              Coco <span className="text-[var(--iris)]">AI</span>
             </span>
-            <p className="mt-1 text-xs text-muted-foreground">
-              AI-powered trading, made effortless.
+            <p className="coco-mono mt-1 text-[10px] uppercase tracking-[0.1em] text-[var(--dim)]">
+              Autonomous trading engine
             </p>
           </div>
         </div>

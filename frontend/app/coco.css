@@ -1,0 +1,420 @@
+/* ── Coco AI design system (home + auth) ─────────────────────────────── */
+
+.coco {
+  --iris: #0036ff;
+  --iris-soft: #2a57ff;
+  --cyan: #0093ff;
+  --void: #05061b;
+  --cosmic: #0f071d;
+  --ink: #141414;
+  --dim: #656565;
+  --hairline: #e5e7eb;
+  --frost: #e1ecff;
+  --mist: #f6f7f9;
+
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.coco *,
+.coco *::before,
+.coco *::after {
+  border-color: var(--hairline);
+}
+
+/* Zones */
+.coco-dark {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(80rem 40rem at 50% -18%, rgba(0, 147, 255, 0.28), transparent 62%),
+    radial-gradient(50rem 32rem at 88% 6%, rgba(0, 54, 255, 0.32), transparent 60%),
+    linear-gradient(180deg, #0a0a2e 0%, #0b0824 46%, var(--cosmic) 100%);
+  color: #fff;
+}
+
+.coco-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(120% 90% at 50% 10%, #000 20%, transparent 78%);
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 10%, #000 20%, transparent 78%);
+  pointer-events: none;
+}
+
+.coco-dark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.22;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+.coco-light {
+  background: #fff;
+  color: var(--ink);
+}
+
+.coco-ink {
+  color: var(--ink);
+}
+.coco-muted {
+  color: var(--dim);
+}
+.coco-accent {
+  color: var(--cyan);
+}
+
+/* Display type */
+.coco-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.06;
+}
+
+.coco-sub {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+}
+
+/* Mono eyebrow tag */
+.coco-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  border: 1px solid var(--hairline);
+  background: var(--mist);
+  color: var(--ink);
+}
+
+.coco-dark .coco-eyebrow {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(14px);
+}
+
+.coco-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0.03em;
+}
+
+/* Buttons */
+.coco-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.25s ease,
+    color 0.2s ease;
+}
+
+.coco-btn svg {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.coco-btn-primary {
+  background: var(--iris);
+  color: #fff;
+  border: 1px solid transparent;
+  box-shadow:
+    rgba(255, 255, 255, 0.14) 0 1px 2px -0.5px inset,
+    rgba(255, 255, 255, 0.18) 0 0.5px 0.5px 0 inset,
+    rgba(255, 255, 255, 0.16) 0 8px 24px -4px inset,
+    rgba(0, 54, 255, 0.35) 0 10px 26px -12px;
+}
+.coco-btn-primary:hover {
+  background: var(--iris-soft);
+  transform: translateY(-1px);
+}
+.coco-btn-primary:hover svg:last-child {
+  transform: translateX(3px);
+}
+.coco-btn-primary:active {
+  transform: translateY(0);
+}
+
+.coco-btn-ghost {
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+}
+.coco-btn-ghost:hover {
+  background: var(--ink);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.coco-dark .coco-btn-ghost {
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #fff;
+}
+.coco-dark .coco-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Pill nav */
+.coco-nav {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 9, 32, 0.72);
+  backdrop-filter: blur(18px) saturate(160%);
+  box-shadow:
+    rgba(255, 255, 255, 0.06) 0 1px 3px 0 inset,
+    rgba(2, 9, 44, 0.4) 0 16px 56px 0;
+}
+
+.coco-navlink {
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.66);
+  transition: color 0.2s ease;
+}
+.coco-navlink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -6px;
+  height: 1.5px;
+  background: var(--cyan);
+  transition: right 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.coco-navlink:hover {
+  color: #fff;
+}
+.coco-navlink:hover::after {
+  right: 0;
+}
+
+/* Cards */
+.coco-card {
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  background: #fff;
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.coco-card:hover {
+  transform: translateY(-4px);
+  border-color: #c9d6ff;
+  box-shadow:
+    rgba(0, 54, 255, 0.08) 0 12px 24px -10px,
+    rgba(0, 0, 0, 0.04) 0 0 0 1px;
+}
+
+.coco-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  width: 44px;
+  border-radius: 12px;
+  background: var(--frost);
+  border: 1px solid #cfe0ff;
+  color: var(--iris);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
+}
+.coco-card:hover .coco-icon {
+  transform: translateY(-2px) rotate(-4deg);
+  background: #d3e3ff;
+}
+
+.coco-dark .coco-card {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(14px);
+}
+
+/* Terminal window mockup */
+.coco-window {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    rgba(255, 255, 255, 0.06) 0 1px 3px 0 inset,
+    rgba(2, 9, 44, 0.5) 0 24px 64px 0;
+}
+.coco-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.coco-window-body {
+  background: var(--void);
+  padding: 18px 16px;
+}
+.coco-dot {
+  height: 9px;
+  width: 9px;
+  border-radius: 999px;
+}
+
+/* Inputs */
+.coco-input {
+  height: 46px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--hairline);
+  background: #fff;
+  padding: 0 40px 0 40px;
+  font-size: 14px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.coco-input::placeholder {
+  color: #9a9aa3;
+}
+.coco-input:focus {
+  border-color: var(--iris);
+  box-shadow: 0 0 0 3px rgba(0, 54, 255, 0.12);
+}
+
+.coco-tab {
+  display: flex;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dim);
+  transition: background-color 0.22s ease, color 0.22s ease;
+}
+.coco-tab:hover {
+  color: var(--ink);
+}
+.coco-tab[data-active='true'] {
+  background: var(--iris);
+  color: #fff;
+}
+
+/* Motion */
+.coco-rise {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: coco-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes coco-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.coco-ticker {
+  animation: coco-ticker 1.6s steps(2) infinite;
+}
+@keyframes coco-ticker {
+  50% {
+    opacity: 0.15;
+  }
+}
+
+.coco-sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(0, 147, 255, 0.16) 50%,
+    transparent 60%
+  );
+  background-size: 260% 100%;
+  animation: coco-sweep 6s ease-in-out infinite;
+}
+@keyframes coco-sweep {
+  0% {
+    background-position: 160% 0;
+  }
+  100% {
+    background-position: -60% 0;
+  }
+}
+
+.coco-bar {
+  transform-origin: bottom;
+  animation: coco-bar 1.5s ease-in-out infinite;
+}
+@keyframes coco-bar {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.coco-pulse {
+  animation: coco-pulse 2.4s ease-in-out infinite;
+}
+@keyframes coco-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.coco-orbit {
+  animation: coco-orbit 18s linear infinite;
+}
+@keyframes coco-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coco-rise,
+  .coco-sweep,
+  .coco-bar,
+  .coco-pulse,
+  .coco-orbit,
+  .coco-ticker {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -3,22 +3,22 @@ import { AuthCard, AuthLayout } from '@/components/auth-card'
 import { AuthRedirect } from '@/components/auth-redirect'
 
 export const metadata: Metadata = {
-  title: 'Registration | Sweetex AI',
+  title: 'Registration | Coco AI',
   description:
-    'Create your Sweetex AI account to start trading smarter with automated, data-driven signals built to grow your account.',
+    'Create your Coco AI account and let an autonomous engine read the market while you take the trade.',
   openGraph: {
-    title: 'Create your Sweetex AI account',
+    title: 'Create your Coco AI account',
     description:
-      'Register for Sweetex AI and start trading smarter with automated, data-driven signals today.',
-    images: ['/sweetex-logo.jpg'],
+      'Register for Coco AI and let an autonomous engine read the market while you take the trade.',
+    images: ['/coco-ai.jpg'],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Create your Sweetex AI account',
+    title: 'Create your Coco AI account',
     description:
-      'Register for Sweetex AI and start trading smarter with automated signals today.',
-    images: ['/sweetex-logo.jpg'],
+      'Register for Coco AI and let an autonomous engine read the market while you take the trade.',
+    images: ['/coco-ai.jpg'],
   },
 }
 
