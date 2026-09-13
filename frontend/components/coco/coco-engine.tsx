@@ -282,31 +282,32 @@ function Glyph({ kind }: { kind: (typeof CELLS)[number]['key'] }) {
 
   return (
     <svg viewBox="0 0 64 48" className="coco-glyph" aria-hidden="true">
-      <rect
-        x="12"
-        y="14"
-        width="40"
-        height="20"
-        rx="10"
+      {/* broadcast tower */}
+      <path
+        d="M32 16 L24 42 M32 16 L40 42 M27 33 H37"
         stroke="currentColor"
-        strokeOpacity="0.35"
-        fill="none"
-      />
-      <rect
-        x="12"
-        y="14"
-        width="40"
-        height="20"
-        rx="10"
-        stroke="currentColor"
-        fill="none"
         strokeWidth="1.6"
         strokeLinecap="round"
-        pathLength={100}
-        strokeDasharray="22 78"
-        className="coco-orbit-dash"
+        fill="none"
       />
-      <circle cx="32" cy="24" r="3" fill="currentColor" className="coco-node-dot" />
+      <circle cx="32" cy="13" r="2.6" fill="currentColor" className="coco-node-dot" />
+      {[
+        { d: 'M25 10 C22 12.5 22 16.5 25 19', delay: 0 },
+        { d: 'M39 10 C42 12.5 42 16.5 39 19', delay: 0 },
+        { d: 'M21 6 C16 10 16 19 21 23', delay: 400 },
+        { d: 'M43 6 C48 10 48 19 43 23', delay: 400 },
+      ].map((w) => (
+        <path
+          key={w.d}
+          d={w.d}
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          fill="none"
+          className="coco-wave"
+          style={{ animationDelay: `${w.delay}ms` }}
+        />
+      ))}
     </svg>
   )
 }

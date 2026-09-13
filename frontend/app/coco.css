@@ -643,6 +643,19 @@
   animation: coco-dash 2.4s linear infinite;
 }
 
+.coco-wave {
+  animation: coco-wave 1.9s ease-in-out infinite;
+}
+@keyframes coco-wave {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  45% {
+    opacity: 1;
+  }
+}
+
 .coco-core-diamond {
   transform-box: fill-box;
   transform-origin: center;
@@ -660,6 +673,7 @@
   .coco-seg-bar,
   .coco-ledger-bar,
   .coco-core-diamond,
+  .coco-wave,
   .coco-cell {
     animation: none !important;
     opacity: 1 !important;
